@@ -15,5 +15,9 @@ namespace SAOnlineMart.Models
         public DateTime OrderDate { get; set; }
         [Required]
         public ICollection<OrderProduct>? Products { get; set; }
+        [Required]
+        public ShippingAddress? ShippingAddress { get; set; }
+        [Required]
+        public Payment? Payment { get; set; }
     }
 }

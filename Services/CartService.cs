@@ -50,6 +50,11 @@ namespace SAOnlineMart.Services
             }
         }
 
+        public void ClearCart()
+        {
+            _httpContextAccessor.HttpContext.Response.Cookies.Delete(CartCookieName);
+        }
+
         private void SaveCartItems(List<OrderProduct> cartItems)
         {
             var cartCookie = JsonConvert.SerializeObject(cartItems);
