@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SAOnlineMart.Models;
+using SAOnlineMart.Data;
 using System.Diagnostics;
 
 namespace SAOnlineMart.Controllers
@@ -7,15 +8,19 @@ namespace SAOnlineMart.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SAOnlineMartContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, SAOnlineMartContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = _context.Product.ToList();
+            return View(products);
         }
 
         public IActionResult Privacy()
