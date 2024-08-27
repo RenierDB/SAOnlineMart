@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SAOnlineMart.Models;
 using SAOnlineMart.Data;
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<SAOnlineMartContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SAOnlineMartContext") ?? throw new InvalidOperationException("Connection string 'SAOnlineMartContext' not found.")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<SAOnlineMartContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -32,9 +36,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();

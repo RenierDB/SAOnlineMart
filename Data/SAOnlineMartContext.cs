@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMart.Models;
 
 namespace SAOnlineMart.Data
 {
-    public class SAOnlineMartContext : DbContext
+    public class SAOnlineMartContext : IdentityDbContext<ApplicationUser>
     {
         public SAOnlineMartContext(DbContextOptions<SAOnlineMartContext> options)
             : base(options)
         {
         }
 
-        public DbSet<SAOnlineMart.Models.Product> Product { get; set; } = default!;
+        public DbSet<Product> Product { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
