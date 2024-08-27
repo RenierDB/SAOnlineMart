@@ -16,6 +16,8 @@ namespace SAOnlineMart.Data
         }
 
         public DbSet<Product> Product { get; set; } = default!;
+        public DbSet<ShippingAddress> ShippingAddress { get; set; } = default!;
+        public DbSet<Payment> Payments { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
