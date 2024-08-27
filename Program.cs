@@ -2,11 +2,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using SAOnlineMart.Models;
 using SAOnlineMart.Data;
+using SAOnlineMart.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<SAOnlineMartContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SAOnlineMartContext") ?? throw new InvalidOperationException("Connection string 'SAOnlineMartContext' not found.")));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<CartService>();
 
 var app = builder.Build();
 
