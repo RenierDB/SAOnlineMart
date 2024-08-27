@@ -1,23 +1,24 @@
-﻿namespace SAOnlineMart.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SAOnlineMart.Models
 {
     public class Product
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public decimal price { get; set; }
-
-        public Product(int id, string name, string description, decimal price)
-        {
-            Id = id;
-            this.name = name;
-            this.description = description;
-            this.price = price;
-        }
-
-        public override string ToString()
-        {
-            return "Product ID: " + Id.ToString() + " Name: " + name + " Description: " + description + " Price: " + price.ToString();
-        }
+        [StringLength(60, MinimumLength = 3)]
+        [Required]
+        public string? Name { get; set; }
+        [StringLength(255, MinimumLength = 3)]
+        [Required]
+        public string? Description { get; set; }
+        [Range(1, 100)]
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Price { get; set; }
+        [StringLength(255, MinimumLength = 3)]
+        [Required]
+        public string? ImageUrl { get; set; }
     }
 }
