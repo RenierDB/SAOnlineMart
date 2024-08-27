@@ -1,0 +1,12 @@
+﻿@model SAOnlineMart.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="product-details">
+    <h1>@Model.Name</h1>
+    <img src="@Model.ImageUrl" alt="@Model.Name" />
+    <p>@Model.Description</p>
+    <p class="price">@Model.Price</p>
+</div>

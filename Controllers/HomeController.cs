@@ -23,6 +23,16 @@ namespace SAOnlineMart.Controllers
             return View(products);
         }
 
+        public IActionResult Details(int id)
+        {
+            var product = _context.Product.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
         public IActionResult Privacy()
         {
             return View();
