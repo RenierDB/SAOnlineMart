@@ -8,9 +8,11 @@
     @foreach (var product in Model)
     {
         <div class="product-card">
-            <img src="@product.ImageUrl" alt="@product.Name" />
-            <h2>@product.Name</h2>
-            <p class="price">@product.Price</p>
+            <a href="@Url.Action("Details", "Home", new { id = product.Id })">
+                <img src="@product.ImageUrl" alt="@product.Name" />
+                <h2>@product.Name</h2>
+                <p class="price">@product.Price</p>
+            </a>
         </div>
     }
 </div>

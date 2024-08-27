@@ -1,0 +1,19 @@
+﻿@model SAOnlineMart.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="product-details">
+    <h1>@Model.Name</h1>
+    <img src="@Model.ImageUrl" alt="@Model.Name" />
+    <p>@Model.Description</p>
+    <p class="price">@Model.Price</p>
+    <form asp-action="AddToCart" asp-controller="Cart" method="post">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="Name" value="@Model.Name" />
+        <input type="hidden" name="Price" value="@Model.Price" />
+        <input type="number" name="Quantity" value="1" min="1" />
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>
+</div>
