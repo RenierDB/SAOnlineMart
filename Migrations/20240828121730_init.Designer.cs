@@ -12,8 +12,8 @@ using SAOnlineMart.Data;
 namespace SAOnlineMart.Migrations
 {
     [DbContext(typeof(SAOnlineMartContext))]
-    [Migration("20240827115234_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240828121730_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

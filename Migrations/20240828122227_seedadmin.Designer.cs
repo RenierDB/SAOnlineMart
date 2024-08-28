@@ -12,8 +12,8 @@ using SAOnlineMart.Data;
 namespace SAOnlineMart.Migrations
 {
     [DbContext(typeof(SAOnlineMartContext))]
-    [Migration("20240828085035_addedadmincontrollers")]
-    partial class addedadmincontrollers
+    [Migration("20240828122227_seedadmin")]
+    partial class seedadmin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,14 @@ namespace SAOnlineMart.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "22ffc532-008e-492d-92b1-e867501f2d54",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -139,6 +147,13 @@ namespace SAOnlineMart.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "22ffc532-008e-492d-92b1-e867501f2d54",
+                            RoleId = "22ffc532-008e-492d-92b1-e867501f2d54"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -235,6 +250,26 @@ namespace SAOnlineMart.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "22ffc532-008e-492d-92b1-e867501f2d54",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a13fd8dd-22d5-4d98-95ec-dabc1cf9e505",
+                            Email = "admin@saonlinemart.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@SAONLINEMART.COM",
+                            NormalizedUserName = "ADMIN@SAONLINEMART.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOSH06DUMAnwr9fGgwsj/pK2qwHPDubqw+CtxlPkrj595291GZRsS1eRkM8t11NPrg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@saonlinemart.com"
+                        });
                 });
 
             modelBuilder.Entity("SAOnlineMart.Models.Order", b =>
