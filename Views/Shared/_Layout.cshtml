@@ -22,7 +22,6 @@
                             var user = Context.User;
                             var isAdmin = user.HasClaim("Permission", "CanAccessAdminPage");
                         }
-
                         @if (isAdmin)
                         {
                             <li>
@@ -42,7 +41,6 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-light custom-navbar mt-auto">
         <div class="container nav-link text-light">
             &copy; 2024 - SAOnlineMart

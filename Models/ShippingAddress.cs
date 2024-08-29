@@ -7,23 +7,23 @@ namespace SAOnlineMart.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(255, MinimumLength = 3)]
         public string? AddressLine { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 3)]
         public string? City { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 3)]
         public string? State { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(10, MinimumLength = 2)]
         public string? ZipCode { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 3)]
         public string? Country { get; set; }
     }
 }

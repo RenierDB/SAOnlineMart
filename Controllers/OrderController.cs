@@ -1,8 +1,10 @@
 ﻿// Controllers/OrderController.cs
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using SAOnlineMart.Data;
 using SAOnlineMart.Models;
 using SAOnlineMart.Services;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SAOnlineMart.Controllers
@@ -31,21 +33,17 @@ namespace SAOnlineMart.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var order = new Order
                 {
-                    UserId = 1, // Replace with actual user ID
                     OrderDate = DateTime.Now,
                     Products = orderViewModel.CartItems,
                     ShippingAddress = orderViewModel.ShippingAddress,
                     Payment = orderViewModel.Payment
                 };
-
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
-
-                // Clear the cart
                 _cartService.ClearCart();
-
                 return RedirectToAction("Confirmation");
             }
 

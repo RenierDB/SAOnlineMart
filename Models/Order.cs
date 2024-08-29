@@ -7,8 +7,6 @@ namespace SAOnlineMart.Models
     public class Order
     {
         public int Id { get; set; }
-        [Required]
-        public int UserId { get; set; }
         [Display(Name = "Order Date")]
         [DataType(DataType.Date)]
         [Required]

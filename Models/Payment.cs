@@ -7,7 +7,7 @@ namespace SAOnlineMart.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 3)]
         public string? CardHolderName { get; set; }
 
         [Required]
@@ -15,11 +15,11 @@ namespace SAOnlineMart.Models
         public string? CardNumber { get; set; }
 
         [Required]
-        [StringLength(5)]
+        [StringLength(5, MinimumLength = 3)]
         public string? ExpirationDate { get; set; }
 
         [Required]
-        [StringLength(3)]
+        [StringLength(3, MinimumLength = 3)]
         public string? CVV { get; set; }
     }
 }
