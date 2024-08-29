@@ -5,15 +5,21 @@
 @model IEnumerable<SAOnlineMart.Models.Product>
 
 
-<div class="products-container">
+<div class="products-container container clearfix">
+    <div class="row">
     @foreach (var product in Model)
     {
-        <div class="product-card">
-            <a href="@Url.Action("Details", "Home", new { id = product.Id })">
-                <img src="@product.ImageUrl" alt="@product.Name" />
-                <h2>@product.Name</h2>
-                <p class="price">@product.Price</p>
-            </a>
+        <div class="col-sm p-3">
+            <div class="card rounded-5" style="width: 18rem">
+                <a href="@Url.Action("Details", "Home", new { id = product.Id })">
+                    <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name" />
+                    <div class="card-body">
+                        <h2 class="card-title text-left text-dark">@product.Name</h2>
+                        <p class="card-subtitle  text-dark">R @product.Price</p>
+                    </div>
+                </a>
+            </div>
         </div>
     }
+    </div>
 </div>
