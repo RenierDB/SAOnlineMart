@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using SAOnlineMart.Models;
 using SAOnlineMart.Data;
+using SAOnlineMart.Models;
 using SAOnlineMart.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SAOnlineMartContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SAOnlineMartContext") ?? throw new InvalidOperationException("Connection string 'SAOnlineMartContext' not found.")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SAOnlineMartContext>();
 
 // Add services to the container.
@@ -19,6 +19,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<CartService>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+        policy.RequireClaim("Permission", "CanAccessAdminPage"));
+});
 
 var app = builder.Build();
 
@@ -35,8 +41,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
