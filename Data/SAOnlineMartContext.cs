@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SAOnlineMart.Models;
+using System.Security.Claims;
 
 namespace SAOnlineMart.Data
 {
@@ -21,23 +22,13 @@ namespace SAOnlineMart.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            string adminRoleId = "22ffc532-008e-492d-92b1-e867501f2d54";
             string adminUserId = "22ffc532-008e-492d-92b1-e867501f2d54";
-
-            modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole
-                {
-                    Id = adminRoleId,
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
-                }
-            );
 
             var hasher = new PasswordHasher<ApplicationUser>();
             modelBuilder.Entity<ApplicationUser>().HasData(
                 new ApplicationUser
                 {
-                    Id = adminUserId,
+                    Id = "22ffc532-008e-492d-92b1-e867501f2d54",
                     UserName = "admin@saonlinemart.com",
                     NormalizedUserName = "ADMIN@SAONLINEMART.COM",
                     Email = "admin@saonlinemart.com",
@@ -50,12 +41,14 @@ namespace SAOnlineMart.Data
                 }
             );
 
-            modelBuilder.Entity<IdentityUserRole<string>>().HasData(
-                new IdentityUserRole<string>
-                {
-                    RoleId = adminRoleId,
-                    UserId = adminUserId
-                }
+            modelBuilder.Entity<IdentityUserClaim<string>>().HasData(
+            new IdentityUserClaim<string>
+            {
+                Id = 1,
+                UserId = "22ffc532-008e-492d-92b1-e867501f2d54",
+                ClaimType = "Permission",
+                ClaimValue = "CanAccessAdminPage"
+            }
             );
 
             modelBuilder.Entity<Product>().HasData(

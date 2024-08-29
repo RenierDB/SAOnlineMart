@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using SAOnlineMart.Models;
 using SAOnlineMart.Data;
+using SAOnlineMart.Models;
 using SAOnlineMart.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +20,12 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<CartService>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+        policy.RequireClaim("Permission", "CanAccessAdminPage"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,8 +41,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

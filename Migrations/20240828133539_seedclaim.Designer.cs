@@ -12,8 +12,8 @@ using SAOnlineMart.Data;
 namespace SAOnlineMart.Migrations
 {
     [DbContext(typeof(SAOnlineMartContext))]
-    [Migration("20240828121730_init")]
-    partial class init
+    [Migration("20240828133539_seedclaim")]
+    partial class seedclaim
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,6 +100,15 @@ namespace SAOnlineMart.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "Permission",
+                            ClaimValue = "CanAccessAdminPage",
+                            UserId = "22ffc532-008e-492d-92b1-e867501f2d54"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -235,6 +244,26 @@ namespace SAOnlineMart.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "22ffc532-008e-492d-92b1-e867501f2d54",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "481b66ea-a869-4bf1-a83d-f65b9eb461fc",
+                            Email = "admin@saonlinemart.com",
+                            EmailConfirmed = true,
+                            FirstName = "Admin",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@SAONLINEMART.COM",
+                            NormalizedUserName = "ADMIN@SAONLINEMART.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM3KCzppll3BYBBf2POnGn+uV00kn1PzelBXIlHS0HRhvRaNIYY4FtzB62AnEZo1kg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@saonlinemart.com"
+                        });
                 });
 
             modelBuilder.Entity("SAOnlineMart.Models.Order", b =>

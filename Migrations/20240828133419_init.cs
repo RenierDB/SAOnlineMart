@@ -259,6 +259,11 @@ namespace SAOnlineMart.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "22ffc532-008e-492d-92b1-e867501f2d54", 0, "0a091a8f-4de0-400d-ac36-3ead79a6383f", "admin@saonlinemart.com", true, "Admin", "User", false, null, "ADMIN@SAONLINEMART.COM", "ADMIN@SAONLINEMART.COM", "AQAAAAIAAYagAAAAEEysMi3TA9qVlHz334GvdK6mFZhORL7qamKTAm8oFaa4HEJgyF+f8Y6FLje9FKwj6A==", null, false, "", false, "admin@saonlinemart.com" });
+
+            migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price" },
                 values: new object[,]

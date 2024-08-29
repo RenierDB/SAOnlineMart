@@ -47,14 +47,6 @@ namespace SAOnlineMart.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "22ffc532-008e-492d-92b1-e867501f2d54",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -105,6 +97,15 @@ namespace SAOnlineMart.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "Permission",
+                            ClaimValue = "CanAccessAdminPage",
+                            UserId = "22ffc532-008e-492d-92b1-e867501f2d54"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -144,13 +145,6 @@ namespace SAOnlineMart.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "22ffc532-008e-492d-92b1-e867501f2d54",
-                            RoleId = "22ffc532-008e-492d-92b1-e867501f2d54"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -253,7 +247,7 @@ namespace SAOnlineMart.Migrations
                         {
                             Id = "22ffc532-008e-492d-92b1-e867501f2d54",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a13fd8dd-22d5-4d98-95ec-dabc1cf9e505",
+                            ConcurrencyStamp = "481b66ea-a869-4bf1-a83d-f65b9eb461fc",
                             Email = "admin@saonlinemart.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -261,7 +255,7 @@ namespace SAOnlineMart.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@SAONLINEMART.COM",
                             NormalizedUserName = "ADMIN@SAONLINEMART.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOSH06DUMAnwr9fGgwsj/pK2qwHPDubqw+CtxlPkrj595291GZRsS1eRkM8t11NPrg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM3KCzppll3BYBBf2POnGn+uV00kn1PzelBXIlHS0HRhvRaNIYY4FtzB62AnEZo1kg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
