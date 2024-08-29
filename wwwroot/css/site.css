@@ -1,15 +1,16 @@
 html {
-    font-size: 14px;
+    font-size: 100%;
     position: relative;
-    min-height: 100%;
-    
+    text-decoration: none;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+a:not([class*="btn"]) {
+    text-decoration: none;
 }
+
+    a:not([class*="btn"]):hover {
+        text-decoration: underline;
+    }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -17,53 +18,13 @@ html {
 
 body {
     font-family: Arial, sans-serif;
+    color: white;
     background-color: #3C0753;
     margin: 0;
     padding: 0;
-    margin-bottom: 60px;
-    color: #ffd3f1;
+    margin-bottom: 80px;
 }
 
 .custom-navbar {
     background-color: #030637;
-}
-
-.products-container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.product-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    padding: 20px;
-}
-
-.product-card img {
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-.product-card h2 {
-    margin: 10px 0;
-}
-
-.product-card .description {
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-.product-card .price {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0;
 }

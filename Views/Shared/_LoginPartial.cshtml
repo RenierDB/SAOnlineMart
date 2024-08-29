@@ -12,11 +12,11 @@
             var user = await UserManager.GetUserAsync(User);
             var firstName = user.FirstName;
         }
-        <a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @firstName!</a>
+        <u id="manage" class="nav-link text-light">Hello @firstName!</u>
     </li>
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Logout</button>
+            <button id="logout" type="submit" class="nav-link btn btn-link text-light border-0">Logout</button>
         </form>
     </li>
 }
