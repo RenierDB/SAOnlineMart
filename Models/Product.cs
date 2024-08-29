@@ -13,5 +13,7 @@ namespace SAOnlineMart.Models
         [StringLength(255, MinimumLength = 3)]
         [Required]
         public string? ImageUrl { get; set; }
+
+        public List<Order> Orders { get; set; } = default!;
     }
 }

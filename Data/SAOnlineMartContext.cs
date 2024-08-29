@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Azure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using SAOnlineMart.Models;
 using System.Security.Claims;
 
@@ -17,9 +19,20 @@ namespace SAOnlineMart.Data
         public DbSet<ShippingAddress> ShippingAddress { get; set; } = default!;
         public DbSet<Payment> Payments { get; set; } = default!;
         public DbSet<Order> Orders { get; set; } = default!;
+        public DbSet<OrderProduct> OrderProducts { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Order>().HasMany(x => x.Products)
+            .WithMany(x => x.Orders)
+            .UsingEntity<OrderProduct>(
+                x => x.HasOne(x => x.Product)
+                .WithMany().HasForeignKey(x => x.ProductId),
+                x => x.HasOne(x => x.Order)
+               .WithMany().HasForeignKey(x => x.OrderId));
+
+
             base.OnModelCreating(modelBuilder);
 
             string adminUserId = "22ffc532-008e-492d-92b1-e867501f2d54";

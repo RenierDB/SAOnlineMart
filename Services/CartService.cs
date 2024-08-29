@@ -26,23 +26,24 @@ namespace SAOnlineMart.Services
             return JsonConvert.DeserializeObject<List<OrderProduct>>(cartCookie);
         }
 
-        public void AddToCart(OrderProduct product)
+        public void AddToCart(Product product)
         {
+            var curprod = new OrderProduct { Product = product, Quantity = 1, ProductId = product.Id };
             var cartItems = GetCartItems();
-            if (cartItems.Exists(p => p.Id == product.Id))
+            if (cartItems.Exists(p => p.ProductId == product.Id))
             {
-                var item = cartItems.Find(p => p.Id == product.Id);
-                product.Quantity += item.Quantity;
-                cartItems.RemoveAll(p => p.Id == product.Id);
+                var item = cartItems.Find(p => p.ProductId == product.Id);
+                curprod.Quantity += item.Quantity;
+                cartItems.RemoveAll(p => p.ProductId == product.Id);
             }
-            cartItems.Add(product);
+            cartItems.Add(curprod);
             SaveCartItems(cartItems);
         }
 
         public void RemoveFromCart(int productId)
         {
             var cartItems = GetCartItems();
-            var itemToRemove = cartItems.Find(p => p.Id == productId);
+            var itemToRemove = cartItems.Find(p => p.Product.Id == productId);
             if (itemToRemove != null)
             {
                 cartItems.Remove(itemToRemove);

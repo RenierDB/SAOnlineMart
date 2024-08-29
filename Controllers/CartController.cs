@@ -14,7 +14,7 @@ namespace SAOnlineMart.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart(OrderProduct product)
+        public IActionResult AddToCart(Product product)
         {
             _cartService.AddToCart(product);
             return RedirectToAction("Index", "Home");

@@ -33,15 +33,26 @@ namespace SAOnlineMart.Controllers
         {
             if (ModelState.IsValid)
             {
+                var viewmodelOrders = orderViewModel.CartItems;
+                List<Product> products = new();
+
+                foreach (var item in viewmodelOrders)
+                {
+                    products.Add(item.Product);
+                }
 
                 var order = new Order
                 {
                     OrderDate = DateTime.Now,
-                    Products = orderViewModel.CartItems,
                     ShippingAddress = orderViewModel.ShippingAddress,
-                    Payment = orderViewModel.Payment
+                    Payment = orderViewModel.Payment,
+                    Products = products
                 };
-                _context.Orders.Add(order);
+
+     
+
+
+                _context.Add(order);
                 await _context.SaveChangesAsync();
                 _cartService.ClearCart();
                 return RedirectToAction("Confirmation");
