@@ -1,6 +1,6 @@
 # SAOnlineMart
 
-Built according to the specification of Eduvos for the ITEHA Individual Assignment. 
+## Built according to the specification of Eduvos for the ITEHA Individual Assignment. 
 
 An ASP.Net Core Web app with basic customer and administrator functionality, including:
 - Browsable product catalogue
@@ -10,7 +10,7 @@ An ASP.Net Core Web app with basic customer and administrator functionality, inc
 - Seeded products and admin account
 - Administrative pages for CRUD operations on products
 
-# How to set up
+## How to set up
 1. Clone the 'main' branch in Visual Studio 2022
 
 2. Initialize the database
@@ -28,3 +28,11 @@ An ASP.Net Core Web app with basic customer and administrator functionality, inc
 4. Finally, ensure the project is selected to use 'http' before running Debug>Start with/without Debugging.
 
     The seeded default administrative account can be found in 'SAOnlineMartContext.cs'
+
+## Contribution guidelines
+### Report bugs using Github's [issues][(https://github.com/RenierDB/SAOnlineMart/issues)]
+Report a bug by opening a new Issue.
+
+### Use a consistent and cleaned coding style
+Use 4 spaces for indentation
+Please use Visual Studio's built in Code Cleanup tool before submitting pull requests.
