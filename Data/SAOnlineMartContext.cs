@@ -36,18 +36,19 @@ namespace SAOnlineMart.Data
             base.OnModelCreating(modelBuilder);
 
             string adminUserId = "22ffc532-008e-492d-92b1-e867501f2d54";
+            string adminPassword = "Admin@123";
 
             var hasher = new PasswordHasher<ApplicationUser>();
             modelBuilder.Entity<ApplicationUser>().HasData(
                 new ApplicationUser
                 {
-                    Id = "22ffc532-008e-492d-92b1-e867501f2d54",
+                    Id = adminUserId,
                     UserName = "admin@saonlinemart.com",
                     NormalizedUserName = "ADMIN@SAONLINEMART.COM",
                     Email = "admin@saonlinemart.com",
                     NormalizedEmail = "ADMIN@SAONLINEMART.COM",
                     EmailConfirmed = true,
-                    PasswordHash = hasher.HashPassword(null, "Admin@123"),
+                    PasswordHash = hasher.HashPassword(null, adminPassword),
                     SecurityStamp = string.Empty,
                     FirstName = "Admin",
                     LastName = "User"
